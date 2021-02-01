@@ -14,6 +14,32 @@ class OrderResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'type' => 'order',
+            'id'   => (string) $this->id,
+            'attributes' => [
+                'usuario_id' => $this->user_id,
+                'monto_total' => $this->amound
+            ],
+            'relationships' => [
+                'user' => [
+                    'data' => [
+                        'type'  => 'user',
+                        'id'    => (string) $this->user_id
+                    ],
+                    'links'=>[
+                        'self' => route('users.show',$this->user_id),
+                        'related' => route('orders.show',$this->id),
+                    ]
+                ]
+            ],
+            'links' => [
+                'self' => route('orders.show',$this->id),
+            ]
+        ];
+    }
+    public function with($request)
+    {
+        return ['included' => [new UserResource($this->user)]];
     }
 }

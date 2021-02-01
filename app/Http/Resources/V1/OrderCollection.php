@@ -14,6 +14,19 @@ class OrderCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        // return parent::toArray($request);
+        return [ 
+            'data' => $this->collection->map(function ($order) use ($request) { 
+                return (new OrderResource($order))->toArray($request); 
+            }) 
+        ]; 
+    }
+    public function with($request)
+    {
+        return [
+            'included' => $this->collection->pluck('user')->unique()->values()->map(function ($user) {
+                return new UserResource($user);
+            })
+        ];
     }
 }
