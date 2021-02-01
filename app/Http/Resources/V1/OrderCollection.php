@@ -14,12 +14,12 @@ class OrderCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
-        return [ 
-            'data' => $this->collection->map(function ($order) use ($request) { 
-                return (new OrderResource($order))->toArray($request); 
-            }) 
-        ]; 
+        return parent::toArray($request);
+        // return [ 
+        //     'data' => $this->collection->map(function ($order) use ($request) { 
+        //         return (new OrderResource($order))->toArray($request); 
+        //     }) 
+        // ]; 
     }
     public function with($request)
     {
