@@ -18,8 +18,11 @@ class OrderResource extends JsonResource
             'type' => 'order',
             'id'   => (string) $this->id,
             'attributes' => [
+                'id' => $this->id,
                 'usuario_id' => $this->user_id,
-                'monto_total' => $this->amound
+                'monto_total' => $this->amound,
+                'fecha_creación' => $this->created_at,
+                'fecha_actualización' => $this->updated_at,
             ],
             'relationships' => [
                 'user' => [

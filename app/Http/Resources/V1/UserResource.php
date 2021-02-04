@@ -22,7 +22,7 @@ class UserResource extends JsonResource
                 'nombre' => $this->name
             ],
             'links' => [
-                'self' => route('orders.show',$this->id),
+                'self' => route('users.show', $this->id),
             ]
         ];
     }
