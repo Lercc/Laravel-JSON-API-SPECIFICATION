@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Auth\Events\Login;
+
 return [
 
     /*
@@ -15,7 +17,7 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'register'],
 
     'allowed_methods' => ['*'],
 
